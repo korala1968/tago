@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 import sys
-    
+
 import os, time, pdb, traceback
 import cPickle as pickle
 
@@ -225,7 +224,7 @@ class QuodLibet(object):
     def get_tracks(self, maintag, mainval, secondary=None, secvalue=None):
 
         exists = lambda t: os.path.exists(t['~filename'])
-        
+
         if secondary and secvalue:
             if secondary == 'album' and maintag == 'artist':
                 tracks = (Tag(self, track) for track in
@@ -240,7 +239,7 @@ class QuodLibet(object):
             if maintag == 'artist':
                 tracks = []
                 [tracks.extend(z) for z in self._cached[mainval].values()]
-                return [Tag(self, track) for track in tracks if 
+                return [Tag(self, track) for track in tracks if
                     exists(track)]
 
             def getvalue(track):
@@ -255,7 +254,7 @@ class QuodLibet(object):
     def distinct_children(self, parent, value, child):
         return set([track.get(child, u'') for track in
             self._tracks if track.get(parent, u'') == value])
-            
+
     def _artists(self):
         return self._cached.keys()
 
@@ -320,7 +319,7 @@ class QuodLibet(object):
         cached[trackartist][trackalbum].append(track)
 
 class DirModel(QDirModel):
-    
+
     def data(self, index, role=Qt.DisplayRole):
         if (role == Qt.DisplayRole and index.column() == 0):
             path = QDir.toNativeSeparators(self.filePath(index))
@@ -336,11 +335,11 @@ class DirLineEdit(QLineEdit):
         completer.setCompletionMode(QCompleter.PopupCompletion)
         dirfilter = QDir.AllEntries | QDir.NoDotAndDotDot | QDir.Hidden
         sortflags = QDir.DirsFirst | QDir.IgnoreCase
-        
+
         dirmodel = QDirModel(['*'], dirfilter, sortflags, completer)
         completer.setModel(dirmodel)
         self.setCompleter(completer)
-        
+
 
 class InitWidget(QWidget):
     def __init__(self, parent=None):
@@ -401,6 +400,3 @@ if __name__ == '__main__':
     for z in d:
         f[z] = dict(d[z])
     pprint.pprint(f)
-        
-            
-        

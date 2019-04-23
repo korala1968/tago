@@ -111,7 +111,7 @@ class DupeTree(QTreeWidget):
                     item = QTreeWidgetItem([a])
                     for z in sorted(d, key=dupe_sort):
                         child = QTreeWidgetItem([tagtofilename(dispformat[0], z[0])])
-                        item.addChild(child)                        
+                        item.addChild(child)
                         [child.addChild(QTreeWidgetItem([
                             tagtofilename(dispformat[1],x)])) for x in
                                 sorted(z[1:], key=title_sort)]
@@ -129,62 +129,6 @@ class DupeTree(QTreeWidget):
 
     def dragEnterEvent(self, event):
         event.reject()
-
-    #def mouseMoveEvent(self, event):
-        #QTreeWidget.mouseMoveEvent(self, event)
-        #if event.buttons() != Qt.LeftButton:
-           #return
-        #mimeData = QMimeData()
-        #plainText = ""
-        #tags= []
-        #pnt = QPoint(*self.StartPosition)
-        #if (event.pos() - pnt).manhattanLength()  < QApplication.startDragDistance():
-            #return
-        ##I'm adding plaintext to MimeData
-        ##because XMMS doesn't seem to work well with Qt's URL's
-        #for z in self.selectedFiles():
-            #url = QUrl.fromLocalFile(z['__filename'])
-            #plainText = plainText + unicode(url.toString()) + u"\n"
-            #tags.append(url)
-        #mimeData = QMimeData()
-        #mimeData.setUrls(tags)
-        #mimeData.setText(plainText)
-
-        #drag = QDrag(self)
-        #drag.setDragCursor(QPixmap(), self.dropaction)
-        #drag.setMimeData(mimeData)
-        #drag.setHotSpot(event.pos() - self.rect().topLeft())
-        #dropaction = drag.exec_(self.dropaction)
-
-    #def mousePressEvent(self, event):
-        #if event.buttons() == Qt.RightButton:
-            #e = QContextMenuEvent(QContextMenuEvent.Mouse, event.pos(), event.globalPos())
-            #self.contextMenuEvent(e)
-            #return
-        #if event.buttons() == Qt.LeftButton:
-            #self.StartPosition = [event.pos().x(), event.pos().y()]
-        #QTreeWidget.mousePressEvent(self, event)
-
-    #def contextMenuEvent(self, event):
-        #menu = QMenu(self)
-        #move = QAction('Move duplicates', self)
-        #delete = QAction('Delete duplicates', self)
-        #remove = QAction('Remove from listing', self)
-
-        #self.connect(delete, SIGNAL('triggered()'), self._move)
-        #self.connect(create, SIGNAL('triggered()'), self._delete)
-        #self.connect(rename, SIGNAL('triggered()'), self._remove)
-        #[menu.addAction(z) for z in [move, remove, delete]]
-        #menu.exec_(event.globalPos())
-
-    #def _remove(self):
-        #pass
-
-    #def _delete(self):
-        #pass
-
-    #def _move(self):
-        #pass
 
 class AlgWin(QWidget):
     def __init__(self, parent=None, alg = None):
@@ -281,16 +225,16 @@ class SetDialog(QDialog):
         hbox = QHBoxLayout()
         hbox.addWidget(self.setscombo)
         hbox.addWidget(comboadd)
-        
+
         vbox.addLayout(hbox)
-        
+
         conditions = QLabel('&Conditions')
         vbox.addWidget(conditions)
-        
+
         self.listbox = ListBox()
         conditions.setBuddy(self.listbox)
         listbuttons = ListButtons()
-        
+
         listhbox = QHBoxLayout()
         listhbox.addWidget(self.listbox)
         listhbox.addLayout(listbuttons)
@@ -304,7 +248,7 @@ class SetDialog(QDialog):
         maintaghbox.addWidget(self.maintag)
         maintaghbox.addStretch()
         vbox.addLayout(maintaghbox)
-        
+
         dispformat = QLabel('Display Format')
         vbox.addWidget(dispformat)
         self.texts = [QLineEdit(), QLineEdit()]
@@ -439,7 +383,7 @@ def init(parent=None):
         #action.setEnabled(False)
     parent.connect(action, SIGNAL('triggered()'), lambda: load_window(parent))
     add_shortcuts('&Tools', [action])
-    
+
 
 if __name__ == "__main__":
     import puddlestuff.libraries.quodlibetlib as quodlibet
