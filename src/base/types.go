@@ -46,3 +46,19 @@ type T_MetaFile struct {
 type T_FileList struct {
 	tfiles		[]T_TagFile
 }
+
+
+type T_PatternSets struct {
+	current		int
+	pattern		[]T_Pattern
+}
+
+
+type T_Pattern struct {
+	// python references in puddletag:
+	// currentSet, _previndex, prevset
+	// setname, sets, disp, algs, maintag
+	//TODO remove when program is finished
+	name			string
+	patt			[]byte
+}
