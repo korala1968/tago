@@ -1,7 +1,7 @@
 import MySQLdb as mysql
 import sys, os, pdb
 try:
-    import puddlestuff.audioinfo as audioinfo
+    import puddlestuff.p as audioinfo
 except ImportError:
     sys.path.insert(1, '..')
     import audioinfo

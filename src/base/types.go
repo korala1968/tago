@@ -9,8 +9,10 @@ import(
 
 type T_TagFile struct {
 	tag		T_Tags
+	tobe		T_Tags				// holds temp tag data before rewriting tag
 	met		T_MetaFile
 	sys		T_FullFile
+	valid		bool					// switch to true if file type happens to be supported
 }
 
 
